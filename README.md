@@ -1,5 +1,20 @@
 == README
 
+The goal of this project is to build an APP that can:
+
+***Users***
+1 - Create Questions
+2 - Provide Answers
+3 - Add Categories to Questions
+4 - Edit Own Questions 
+5 - Destroy Own Questions
+
+***Moderators***
+1 - All of the above in anyone's Questions/Answers
+
+***Admin***
+1 - Can do anything
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
