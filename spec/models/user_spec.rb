@@ -15,9 +15,9 @@ RSpec.describe User, type: :model do
   end
 
   it "has many comments through questions" do
-    comment = Comment.create(content: "A New Comment")
-    @user.comments << comment
-    expect(@user.comments.first).to eq(comment)
+    answer = Answer.create(content: "A New Answer")
+    @user.answers << comment
+    expect(@user.comments.first).to eq(answer)
   end
 
 end
