@@ -15,29 +15,26 @@ The goal of this project is to build an APP that can:
 ***Admin***
 1 - Can do anything
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+---------------
 
-Things you may want to cover:
+***RELATIONSHIPS***
 
-* Ruby version
+* Question has many answers
+* Question has many answerers(users) through answers
+* Question belongs to an user
 
-* System dependencies
+* Answer belongs to a question
+* Answer belongs to an answerer(user)
 
-* Configuration
+* User has many authored_questions
+* User has many answers 
+* User has many answered_questions through answers
 
-* Database creation
+---------------
 
-* Database initialization
+*How can I create a new question for an user?*
 
-* How to run the test suite
+*How can I query the author(user) of a question?*
 
-* Services (job queues, cache servers, search engines, etc.)
+*How can I find all the questions a user has answered on?*
 
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.

@@ -8,9 +8,6 @@
     title: Faker::StarWars.quote,
     content: Faker::Hacker.say_something_smart
     )
-  # Category.create(
-  #   name: Faker::Hipster.word
-  #   )
 end
 
 
@@ -22,7 +19,7 @@ Question.all.each do |q|
   q.answers << [Answer.new(content: Faker::Lorem.paragraph(2, false, 4), user_id: counter), Answer.new(content: Faker::Lorem.paragraph(2, false, 4), user_id: counter)]
   
 
-  q.user_id = counter
+  q.author_id = counter
   q.save
   counter += 1
 end
