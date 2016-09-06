@@ -12,14 +12,14 @@ end
 
 
 
-counter = 1
-Question.all.each do |q|
+# counter = 1
+# Question.all.each do |q|
 
-  q.categories << [Category.new(name: Faker::Hipster.word), Category.new(name: Faker::Hipster.word)]
-  q.answers << [Answer.new(content: Faker::Lorem.paragraph(2, false, 4), user_id: counter), Answer.new(content: Faker::Lorem.paragraph(2, false, 4), user_id: counter)]
+#   q.categories << [Category.new(name: Faker::Hipster.word), Category.new(name: Faker::Hipster.word)]
+#   q.answers << [Answer.new(content: Faker::Lorem.paragraph(2, false, 4), user_id: counter), Answer.new(content: Faker::Lorem.paragraph(2, false, 4), user_id: counter)]
   
 
-  q.author_id = counter
-  q.save
-  counter += 1
-end
+#   q.author_id = counter
+#   q.save
+#   counter += 1
+# end

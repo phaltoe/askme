@@ -21,7 +21,7 @@ The goal of this project is to build an APP that can:
 
 * Question has many answers
 * Question has many answerers(users) through answers
-* Question belongs to an user
+* Question belongs to an author (user)
 
 * Answer belongs to a question
 * Answer belongs to an answerer(user)

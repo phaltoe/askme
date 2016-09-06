@@ -15,11 +15,16 @@ RSpec.describe User, type: :model do
 
   it "is not valid without a password" do
     expect(User.new(name: "Name")).not_to be_valid
+    expect(User.new(email: "email@rspec.com")).not_to be_valid
+    expect(User.new(password: "password")).not_to be_valid
+    expect(User.new(name: "Name", email: "email@rspec.com")).not_to be_valid
+    expect(User.new(password: "password", email: "email@rspec.com")).to be_valid
+    expect(User.new(name: "Name", password: "password", email: "email@rspec.com")).to be_valid
   end
 
   it "has many questions" do
-    user.questions.create
-    expect(user.questions.count).to eq(1)
+    user.authored_questions.create
+    expect(user.authored_questions.count).to eq(1)
   end
 
   it "has many comments through questions" do
