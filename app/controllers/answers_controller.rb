@@ -14,8 +14,8 @@ class AnswersController < ApplicationController
 
   def show
     if params[:question_id]
-      question = Question.find_by_id(params[:question_id])
-      @answer = question.answers.find_by_id(params[:id])
+      @question = Question.find_by_id(params[:question_id])
+      @answer = @question.answers.find_by_id(params[:id])
       if @answer.nil?
         flash[:alert] = "answer not found"
         redirect_to question_answers_path(@question)
@@ -27,25 +27,25 @@ class AnswersController < ApplicationController
 
   def new
     if params[:question_id]
-      question = Question.find_by_id(params[:question_id])
-      @answer = question.answers.build
+      @question = Question.find_by_id(params[:question_id])
+      @answer = @question.answers.build
     end
   end
 
   def edit
-    question = Question.find_by_id(params[:question_id])
+    @question = Question.find_by_id(params[:question_id])
     @answer = question.answers.find(params[:id])
   end
 
   def create
-    question = Question.find(params[:question_id])
-    @answer = question.answers.create(answer_params)
+    @question = Question.find(params[:question_id])
+    @answer = @question.answers.create(answer_params)
 
-    redirect_to([@answer.question, @answer])
+    redirect_to @question  
   end
 
   def update
-    question = Question.find_by_id(params[:question_id])
+    @question = Question.find_by_id(params[:question_id])
     @answer = question.answers.find(params[:id])
     
     if @answer.update_attrivutes(answer_params)
@@ -56,8 +56,8 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    question = Question.find_by_id(params[:question_id])
-    @answer = question.answers.find(params[:id])
+    @question = Question.find_by_id(params[:question_id])
+    @answer = @question.answers.find(params[:id])
 
     @answer.destroy
   end
