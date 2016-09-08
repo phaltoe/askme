@@ -1,2 +1,10 @@
 Title: <%= @question.title %><br>
 Content: <%= @question.content %><br>
+
+<div>
+  <li>
+    <% @question.categories.each do |category| %>
+    <ul><%= category.name %></ul>
+    <% end %>
+  </li>
+</div>

@@ -1,0 +1,49 @@
+<style>
+.field_with_errors {
+  border: 1px solid red;
+}
+</style>
+
+<h1>Create a new Question!</h1>
+
+<%= form_for(@question) do |f| %>
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <% if @question.errors[:title].present? %>
+      <small>Please enter a title</small>
+    <% end %> 
+  </p> 
+  <p>
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+    <% if @question.errors[:content].present? %>
+      <small>Please enter a content</small>
+    <% end %>   
+  </p>
+
+  <p>
+    Add Categories:
+
+    <div class="field">
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %><br>
+  </div>
+
+<!--   <div class="field">
+    <%= f.fields_for :categories, @question.categories.build do |categories_field| %>
+      <%= categories_field.label :name %>
+      <%= categories_field.text_field :name %>
+    <% end %>
+  </div>  
+ -->
+    <ul>
+      <%= f.fields_for :categories do |category| %>
+        <li><%= category.text_field :name, :placeholder => "Add a new category" %></li>       
+      <% end %>  
+    </ul>
+
+  </p>
+  
+  <%= f.submit %>
+
+<% end %> 

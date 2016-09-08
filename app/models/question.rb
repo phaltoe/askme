@@ -12,4 +12,13 @@ class Question < ActiveRecord::Base
   
   has_many :categories, 
             through: :question_categories
+
+
+  # accepts_nested_attributes_for :categories   
+  accepts_nested_attributes_for :categories, reject_if: proc { |attributes| attributes['name'].blank? }       
+  # def categories_attributes=(categories)
+  #   categories.each do |index, categories_hash|
+  #     self.categories.build(:name => categories_hash[:name]) if categories_hash[:name].present?
+  #   end
+  # end          
 end
