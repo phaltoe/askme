@@ -8,3 +8,5 @@ Content: <%= @question.content %><br>
     <% end %>
   </li>
 </div>
+
+<%= link_to "Answer this question!", new_question_answer_path(@question) %>
