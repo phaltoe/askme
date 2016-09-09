@@ -6,7 +6,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = current_user.authored_questions.find(params[:id])
+    @question = Question.find(params[:id])
   end
 
   def new
