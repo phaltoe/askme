@@ -17,9 +17,9 @@ class Question < ActiveRecord::Base
   def categories_attributes=(new_categories)
     new_categories.each do |index, categories_hash|
       new_category = Category.find_or_create_by(:name => categories_hash[:name]) if 
-      categories_hash[:name].present? 
+      !categories_hash[:name].nil? 
       
-      self.categories << new_category
+      self.categories << new_category unless new_category.nil? 
     end
   end 
 end
