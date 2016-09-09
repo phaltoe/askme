@@ -23,6 +23,8 @@
     <%=f.error_span(:content) %>
   </div>
 
+  <%= f.hidden_field :user_id, value: current_user.id %>
+
 
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
