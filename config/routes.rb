@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root 'home#index', as: 'home'
+  root 'questions#index'
 
   resources :questions do
     resources :answers

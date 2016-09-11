@@ -1,14 +1,14 @@
-10.times do 
-  User.create(
-    email: Faker::Internet.email, 
-    password: Faker::Internet.password(8), 
-    name: Faker::Superhero.name
-    )
-  Question.create(
-    title: Faker::StarWars.quote,
-    content: Faker::Hacker.say_something_smart
-    )
-end
+# 10.times do 
+#   User.create(
+#     email: Faker::Internet.email, 
+#     password: Faker::Internet.password(8), 
+#     name: Faker::Superhero.name
+#     )
+#   Question.create(
+#     title: Faker::StarWars.quote,
+#     content: Faker::Hacker.say_something_smart
+#     )
+# end
 
 
 

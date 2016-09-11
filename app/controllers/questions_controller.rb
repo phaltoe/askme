@@ -13,13 +13,31 @@ class QuestionsController < ApplicationController
     @question = current_user.authored_questions.build
   end
 
+  def edit
+    @question = Question.find(params[:id])
+  end
+
   def create
-    # raise params.inspect
     @question = current_user.authored_questions.build(question_params)
     @question.save
 
-    redirect_to home_path
+    redirect_to @question
   end
+
+  def update
+    @question = Question.find(params[:id])
+    @question.update(question_params)
+
+    redirect_to @question
+  end
+
+  def destroy
+    @question = Question.find(params[:id])
+    @question.destroy
+
+    redirect_to root_path
+  end
+
 
   private
 

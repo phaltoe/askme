@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  # has_many :questions
   has_many :authored_questions, 
             class_name: 'Question', 
             foreign_key: :author_id
@@ -15,5 +14,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates_presence_of :name
     
 end
