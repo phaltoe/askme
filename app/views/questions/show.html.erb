@@ -1,17 +1,15 @@
 <%- model_class = Question -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
-
-  <dd><%= @question.author.email %></dd>
+  <h1><%= @question.title %></h1>
+  <% @question.categories.each do |category| %>
+  <span><%= category.name %></span>
+  <% end %>
+  <h6><%= link_to @question.author.name, user_path(@question.author) %></h6>
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-  <dd><%= @question.title %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:content) %>:</strong></dt>
-  <dd><%= @question.content %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:author_id) %>:</strong></dt>
-  <dd><%= link_to @question.author.name, user_path(@question.author) %></dd>
+  <h4><%= @question.content %></h4>
+  
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
@@ -30,9 +28,9 @@
 </br>
 <dl class="dl-horizontal">
   <% @question.answers.each do |answer| %>
-    <dt><strong><%= model_class.human_attribute_name(:content) %>:</strong></dt>
+  </br>
+    <dd><%= link_to answer.answerer.name, user_path(answer.answerer) %> wrote on <%= answer.created_at.strftime("%d %b. %Y") %></dd>
     <dd><%= answer.content %></dd>
-    <dt><strong><%= model_class.human_attribute_name(:written_by) %>:</strong></dt>
-    <dd><%= answer.answerer %></dd>
+  </br>  
   <% end %>  
 </dl>              

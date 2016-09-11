@@ -13,13 +13,13 @@
   <dd><strong><%= model_class.human_attribute_name(:Answers) %>:</strong></dd>
   </br>
   <% @user.answers.each do |answer| %>
-    <dd><%= link_to answer.question.title, question_path(answer) %></dd>
+    <dd><%= link_to answer.question.title, question_path(answer.question) %></dd>
   <% end %>  
   <dd><%= @user.reset_password_sent_at %></dd>
 </dl>
 
-<%#= link_to t('.back', :default => t("helpers.links.back")),
-              questions_path, :class => 'btn btn-default'  %>
+<%= link_to t('.back', :default => t("helpers.links.Questions")),
+              questions_path, :class => 'btn btn-primary'  %>
 <%#= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_user_path(@user), :class => 'btn btn-default' %>
 <%#= link_to t('.destroy', :default => t("helpers.links.destroy")),
