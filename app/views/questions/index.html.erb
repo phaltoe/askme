@@ -20,13 +20,15 @@
         <td>
           <%= link_to t('.answer', :default => t("helpers.links.answer")),
                       new_question_answer_path(question), :class => ' btn-primary btn-xs' %>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_question_path(question), :class => ' btn-default btn-xs' %>            
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      question_path(question),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => ' btn-xs btn-danger' %>
+          <% if question.author == current_user %>            
+            <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                        edit_question_path(question), :class => ' btn-default btn-xs' %>            
+            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                        question_path(question),
+                        :method => :delete,
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => ' btn-xs btn-danger' %>
+          <% end %>              
         </td>
       </tr>
     <% end %>
