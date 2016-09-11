@@ -48,7 +48,7 @@ class AnswersController < ApplicationController
     @question = Question.find_by_id(params[:question_id])
     @answer = question.answers.find(params[:id])
     
-    if @answer.update_attrivutes(answer_params)
+    if @answer.update_attributes(answer_params)
       redirect_to([@answer.question, @answer])
     else
       render :edit

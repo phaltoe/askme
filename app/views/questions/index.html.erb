@@ -5,9 +5,9 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:title) %></th>
-      <th><%= model_class.human_attribute_name(:author_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%= link_to model_class.human_attribute_name(:title), :sort => "title" %></th>
+      <th><%= link_to model_class.human_attribute_name(:author_id), :sort => "author_id" %></th>
+      <th><%= link_to model_class.human_attribute_name(:created_at), :sort => "created_at"  %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
