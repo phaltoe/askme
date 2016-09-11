@@ -41,7 +41,8 @@ class QuestionsController < ApplicationController
    def favorite
     @question = Question.find(params[:id])
     type = params[:type]
-    if type == "favorite"
+
+    if type == "favorite" && !current_user.favorites.include?(@question)
       current_user.favorites << @question
       redirect_to :back, notice: "You favorited #{@question.title}"
 
@@ -51,7 +52,7 @@ class QuestionsController < ApplicationController
 
     else
       # Type missing, nothing happens
-      redirect_to :back, notice: 'Nothing happened.'
+      redirect_to :back, notice: 'You already favorited this question!'
     end
   end
 

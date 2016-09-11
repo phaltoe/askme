@@ -4,13 +4,7 @@
   <% @question.categories.each do |category| %>
   <%= link_to tag_label(category.name, :default), category %>
   <% end %>
-  <h6><%= link_to @question.author.name, user_path(@question.author) %>
-  <% if current_user %>
-  <%= link_to t('.favorite!'), 
-                favorite_question_path(@question, type: "favorite"), method: :put, :class => 'label label-success' %>
-  <%= link_to "unfavorite", favorite_question_path(@question, type: "unfavorite"), method: :put, :class => 'label label-danger' %>
-<% end %> 
-</h6> 
+  <h6><%= link_to @question.author.name, user_path(@question.author) %></h6> 
 </div>
 
 <dl class="dl-horizontal">
@@ -21,7 +15,12 @@
 <%= link_to t('.back', :default => t("helpers.links.back")),
               questions_path, :class => 'btn btn-default'  %>              
 <%= link_to t('.Answer this Question', :default => t("helpers.links.Answer this Question!")),
-              new_question_answer_path(@question), :class => 'btn btn-primary'  %>            
+              new_question_answer_path(@question), :class => 'btn btn-primary'  %>
+
+<% if current_user %>
+<%= link_to t('.favorite!'), 
+              favorite_question_path(@question, type: "favorite"), method: :put, :class => 'btn btn-success' %>
+<% end %>                           
 <% if @question.author == current_user %>              
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
                 edit_question_path(@question), :class => 'btn btn-default' %>

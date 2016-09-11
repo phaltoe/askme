@@ -12,9 +12,20 @@
   </br>
   <dd><strong><%= model_class.human_attribute_name(:Answers) %>:</strong></dd>
   </br>
-  <% @user.answers.each do |answer| %>
+  <% @user.answers.select do |answer| %>
     <dd><%= link_to answer.question.title, question_path(answer.question) %></dd>
-  <% end %>  
+
+  <% end %> 
+  
+  </br>
+  <dd><strong><%= model_class.human_attribute_name(:Favorite_Questions) %>:</strong></dd>
+  </br>
+  <% @user.favorites.each do |favorite| %>
+    <dd>
+      <%= link_to favorite.title, question_path(favorite) %>
+      <%= link_to "remove", favorite_question_path(favorite, type: "unfavorite"), method: :put, :class => 'label label-danger' %>
+    </dd>
+  <% end %> 
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.Return_to_Questions")),
