@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
   has_many :answered_questions, 
             through: :answers, 
             source: :question
+
+  has_many :favorite_questions
+  
+  has_many :favorites, through: :favorite_questions, source: :question          
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
