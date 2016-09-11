@@ -29,8 +29,13 @@
 <dl>
   <% @question.answers.each do |answer| %>
   </br>
-    <dd><%= link_to answer.answerer.name, user_path(answer.answerer) %> wrote on <%= answer.created_at.strftime("%d %b. %Y") %></dd>
-    <dd><%= answer.content %></dd>
+    <% if answer.answerer %>
+      <dd><%= link_to answer.answerer.name, user_path(answer.answerer) %> wrote on <%= answer.created_at.strftime("%d %b. %Y") %></dd>
+      <dd><%= answer.content %></dd>
+    <% else %>  
+      <dd> Anonymous wrote on <%= answer.created_at.strftime("%d %b. %Y") %></dd>
+      <dd><%= answer.content %></dd>
+    <% end %>  
   </br>  
   <% end %>  
 </dl>              
