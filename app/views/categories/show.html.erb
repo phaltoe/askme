@@ -1,0 +1,13 @@
+<%- model_class = Category -%>
+<div class="page-header">
+  <h1><%= @category.name %></h1>
+</div>
+
+<dl>
+  <% @category.questions.each do |question| %>
+  <dd><%= link_to question.title, question %></dd>
+  <% end %>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.Return_to_Questions")),
+              questions_path, :class => 'btn btn-primary'  %>

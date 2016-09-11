@@ -2,7 +2,7 @@
 <div class="page-header">
   <h1><%= @question.title %></h1>
   <% @question.categories.each do |category| %>
-  <span><%= category.name %></span>
+  <%= link_to tag_label(category.name, :default), category %>
   <% end %>
   <h6><%= link_to @question.author.name, user_path(@question.author) %></h6>
 </div>
@@ -26,7 +26,7 @@
 
 </br>
 </br>
-<dl class="dl-horizontal">
+<dl>
   <% @question.answers.each do |answer| %>
   </br>
     <dd><%= link_to answer.answerer.name, user_path(answer.answerer) %> wrote on <%= answer.created_at.strftime("%d %b. %Y") %></dd>
