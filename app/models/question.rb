@@ -19,15 +19,7 @@ class Question < ActiveRecord::Base
             through: :favorite_questions, 
             source: :user
 
-   accepts_nested_attributes_for :categories                 
+   accepts_nested_attributes_for :categories, :reject_if => proc { |attributes| attributes['name'].blank? }                
 
 
-  # def categories_attributes=(new_categories)
-  #   new_categories.each do |index, categories_hash|
-
-  #     new_category = Category.find_or_create_by(:name => categories_hash[:name]) 
-      
-  #     self.categories << new_category
-  #   end
-  # end 
 end
