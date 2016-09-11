@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :questions do
     resources :answers
+    put :favorite, on: :member
   end
 
   # resources :users, only: :show

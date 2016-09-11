@@ -15,7 +15,9 @@ class Question < ActiveRecord::Base
 
   has_many :favorite_questions
 
-  has_many :favorited_by, through: :favorite_questions, source: :author, class_name: 'User'          
+  has_many :favorited_by, 
+            through: :favorite_questions, 
+            source: :user        
 
 
   def categories_attributes=(new_categories)
