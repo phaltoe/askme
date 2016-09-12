@@ -19,7 +19,16 @@ class Question < ActiveRecord::Base
             through: :favorite_questions, 
             source: :user
 
-   accepts_nested_attributes_for :categories, :reject_if => proc { |attributes| attributes['name'].blank? }                
+  accepts_nested_attributes_for :categories, 
+                                 reject_if: :reject_categories                
 
+
+  def reject_categories(attributes)
+    attributes['name'].blank?
+  end
+
+  def self.most_answered
+    self.order("answers_count DESC").limit(3)
+  end
 
 end
