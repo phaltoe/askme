@@ -18,7 +18,7 @@ class AnswersController < ApplicationController
       @question = Question.find_by_id(params[:question_id])
       @answer = @question.answers.find_by_id(params[:id])
       if @answer.nil?
-        flash[:alert] = "answer not found"
+        flash[:alert] = "Answer not Found"
         redirect_to question_answers_path(@question)
       end
     else
@@ -42,7 +42,12 @@ class AnswersController < ApplicationController
     @question = Question.find(params[:question_id])
     @answer = @question.answers.create(answer_params)
 
-    redirect_to @question  
+    if @answer.save
+      redirect_to @question  
+    else
+      flash[:message]
+      render :new
+    end
   end
 
   def update
@@ -51,7 +56,9 @@ class AnswersController < ApplicationController
     
     if @answer.update_attributes(answer_params)
       redirect_to([@answer.question, @answer])
+      flash[:message]
     else
+      flash[:message]
       render :edit
     end
   end

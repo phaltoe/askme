@@ -4,4 +4,6 @@ class Answer < ActiveRecord::Base
               foreign_key: :user_id
               
   belongs_to :question, counter_cache: true
+
+  validates_presence_of :content
 end

@@ -21,16 +21,23 @@ class QuestionsController < ApplicationController
 
   def create
     @question = current_user.authored_questions.build(question_params)
-    @question.save
-
-    redirect_to @question
+    if @question.save
+      redirect_to @question
+    else
+      flash[:message]
+      render :new
+    end
   end
 
   def update
     @question = Question.find(params[:id])
-    @question.update(question_params)
-
-    redirect_to @question
+    if @question.update(question_params)
+      flash[:message]
+      redirect_to @question
+    else
+      flash[:message]
+      render :edit
+    end
   end
 
   def destroy

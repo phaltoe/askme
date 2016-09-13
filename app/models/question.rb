@@ -23,6 +23,8 @@ class Question < ActiveRecord::Base
                                  reject_if: :reject_categories                
 
 
+   validates_presence_of :title                       
+
   def reject_categories(attributes)
     attributes['name'].blank?
   end
