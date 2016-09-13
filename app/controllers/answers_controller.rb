@@ -1,4 +1,5 @@
 class AnswersController < ApplicationController
+  before_filter :authenticate_user!, only: [:edit, :update, :destroy]
 
   def index
     if params[:question_id]

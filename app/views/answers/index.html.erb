@@ -1,14 +1,13 @@
 <%- model_class = Answer -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <h5><%= link_to @answers.first.question.title, question_path(@answers.first.question) %></h5>
 </div>
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:content) %></th>
-      <th><%= model_class.human_attribute_name(:user_id) %></th>
-      <th><%= model_class.human_attribute_name(:question_id) %></th>
+      <th><%= model_class.human_attribute_name(:author) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -16,16 +15,18 @@
   <tbody>
     <% @answers.each do |answer| %>
       <tr>
-        <td><%= link_to answer.id, answer_path(answer) %></td>
         <td><%= answer.content %></td>
-        <td><%= answer.user_id %></td>
-        <td><%= answer.question_id %></td>
+        <% if answer.answerer %>
+          <td><%= link_to answer.answerer.name, user_path(answer.answerer) %></td>
+        <% else %>
+          <td>Anonymous</td>
+        <% end %>
         <td><%=l answer.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_answer_path(answer), :class => 'btn btn-default btn-xs' %>
+                      edit_question_answer_path(answer.question, answer), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      answer_path(answer),
+                      question_answer_path(answer.question, answer),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
@@ -36,5 +37,5 @@
 </table>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_answer_path,
+            new_question_answer_path,
             :class => 'btn btn-primary' %>
