@@ -35,7 +35,7 @@ class AnswersController < ApplicationController
 
   def edit
     @question = Question.find_by_id(params[:question_id])
-    @answer = question.answers.find(params[:id])
+    @answer = @question.answers.find(params[:id])
   end
 
   def create
@@ -47,7 +47,7 @@ class AnswersController < ApplicationController
 
   def update
     @question = Question.find_by_id(params[:question_id])
-    @answer = question.answers.find(params[:id])
+    @answer = @question.answers.find(params[:id])
     
     if @answer.update_attributes(answer_params)
       redirect_to([@answer.question, @answer])

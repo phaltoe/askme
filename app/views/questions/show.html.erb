@@ -12,8 +12,7 @@
   
 </dl>
 
-<%= link_to t('.back', :default => t("helpers.links.back")),
-              questions_path, :class => 'btn btn-default'  %>              
+<%= link_to "Back", :back, :class => 'btn btn-default' %>              
 <%= link_to t('.Answer this Question', :default => t("helpers.links.Answer this Question!")),
               new_question_answer_path(@question), :class => 'btn btn-primary'  %>
 
@@ -33,15 +32,17 @@
 </br>
 </br>
 <dl>
-  <% @question.answers.each do |answer| %>
+  <% @question.answers[0..2].each do |answer| %>
   </br>
     <% if answer.answerer %>
       <dd><%= link_to answer.answerer.name, user_path(answer.answerer) %> wrote on <%= answer.created_at.strftime("%d %b. %Y") %></dd>
-      <dd><%= answer.content %></dd>
+      <dd><%= simple_format answer.content %></dd>
     <% else %>  
       <dd> Anonymous wrote on <%= answer.created_at.strftime("%d %b. %Y") %></dd>
       <dd><%= answer.content %></dd>
     <% end %>  
   </br>  
   <% end %>  
+  <%= link_to t('.index', :default => t("helpers.links.display_all_answers")),
+                question_answers_path(@question), :class => 'btn btn-default' %>
 </dl>              
