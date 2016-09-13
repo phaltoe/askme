@@ -13,7 +13,7 @@
   <dd><strong><%= model_class.human_attribute_name(:Answers) %>:</strong></dd>
   </br>
   <% @user.answers.select do |answer| %>
-    <dd><%= link_to answer.question.title, question_path(answer.question) %></dd>
+    <dd><%= link_to truncate(answer.content, length: 50) + "(read more)", question_answer_path(answer.question, answer) %></dd>
 
   <% end %> 
   

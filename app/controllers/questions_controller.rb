@@ -62,7 +62,7 @@ class QuestionsController < ApplicationController
   private
 
   def sort_column
-    Question.column_names.include?(params[:sort]) ? params[:sort] : "title"
+    Question.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
   end
   
   def sort_direction

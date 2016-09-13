@@ -17,8 +17,8 @@
               new_question_answer_path(@question), :class => 'btn btn-primary'  %>
 
 <% if current_user %>
-<%= link_to t('.favorite!'), 
-              favorite_question_path(@question, type: "favorite"), method: :put, :class => 'btn btn-success' %>
+  <%= link_to t('.favorite!'), 
+                favorite_question_path(@question, type: "favorite"), method: :put, :class => 'btn btn-success' %>
 <% end %>                           
 <% if @question.author == current_user %>              
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
@@ -35,7 +35,8 @@
   <% @question.answers[0..2].each do |answer| %>
   </br>
     <% if answer.answerer %>
-      <dd><%= link_to answer.answerer.name, user_path(answer.answerer) %> wrote on <%= answer.created_at.strftime("%d %b. %Y") %></dd>
+      <dd><%= link_to answer.answerer.name, user_path(answer.answerer) %> wrote on <%= link_to answer.created_at.strftime("%d %b. %Y"), question_answer_path(answer.question, answer) %> | <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                        edit_question_answer_path(@question, answer), :class => ' btn-info btn-xs' %> </dd>
       <dd><%= simple_format answer.content %></dd>
     <% else %>  
       <dd> Anonymous wrote on <%= answer.created_at.strftime("%d %b. %Y") %></dd>
@@ -43,6 +44,8 @@
     <% end %>  
   </br>  
   <% end %>  
-  <%= link_to t('.index', :default => t("helpers.links.display_all_answers")),
-                question_answers_path(@question), :class => 'btn btn-default' %>
+  <% if @question.answers.size > 3 %>
+    <%= link_to t('.index', :default => t("helpers.links.show_all_answers")),
+                  question_answers_path(@question), :class => 'btn btn-primary' %>
+  <% end %>                
 </dl>              
