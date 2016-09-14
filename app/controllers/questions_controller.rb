@@ -5,6 +5,7 @@ class QuestionsController < ApplicationController
 
   def index
     @questions = Question.order(sort_column + " " + sort_direction)
+    authorize @questions
   end
 
   def show
