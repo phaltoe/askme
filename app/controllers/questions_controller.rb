@@ -3,8 +3,6 @@ class QuestionsController < ApplicationController
 
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
-  before_filter :store_current_location, :unless => :devise_controller?
-
   helper_method :sort_column, :sort_direction
 
   def index
@@ -86,9 +84,4 @@ class QuestionsController < ApplicationController
   def question_params
     params.require(:question).permit(:title, :content, :author_id, :category_ids => [], :categories_attributes => [:name])
   end
-
-  def store_current_location
-    store_location_for(:user, request.url)
-  end
-
 end

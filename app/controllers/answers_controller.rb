@@ -1,6 +1,8 @@
 class AnswersController < ApplicationController
   before_filter :authenticate_user!, only: [:edit, :update, :destroy]
 
+  before_action :set_answer, only: [:show, :edit, :update, :destroy]
+
   def index
     if params[:question_id]
       begin
@@ -14,15 +16,9 @@ class AnswersController < ApplicationController
   end
 
   def show
-    if params[:question_id]
-      @question = Question.find_by_id(params[:question_id])
-      @answer = @question.answers.find_by_id(params[:id])
-      if @answer.nil?
-        flash[:alert] = "Answer not Found"
-        redirect_to question_answers_path(@question)
-      end
-    else
-      @answer = Answer.find(params[:id])
+    if @answer.nil?
+      flash[:alert] = "Answer not Found"
+      redirect_to question_answers_path(@question)
     end
   end
 
@@ -34,8 +30,6 @@ class AnswersController < ApplicationController
   end
 
   def edit
-    @question = Question.find_by_id(params[:question_id])
-    @answer = @question.answers.find(params[:id])
   end
 
   def create
@@ -50,10 +44,7 @@ class AnswersController < ApplicationController
     end
   end
 
-  def update
-    @question = Question.find_by_id(params[:question_id])
-    @answer = @question.answers.find(params[:id])
-    
+  def update    
     if @answer.update_attributes(answer_params)
       redirect_to([@answer.question, @answer])
       flash[:message]
@@ -64,15 +55,17 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    @question = Question.find_by_id(params[:question_id])
-    @answer = @question.answers.find(params[:id])
-
     @answer.destroy
   end
 
   private
 
+  def set_answer
+    @question = Question.find_by_id(params[:question_id])
+    @answer = @question.answers.find(params[:id])
+  end
+
   def answer_params
     params.require(:answer).permit(:title, :content, :user_id)
-  end  
+  end
 end
