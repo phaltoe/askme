@@ -7,11 +7,13 @@ class AnswersController < ApplicationController
     if params[:question_id]
       begin
         @answers = Question.find(params[:question_id]).answers
+        authorize @answers
       rescue ActiveRecord::RecordNotFound
         redirect_to question_path, alert: "Question not found"
       end
     else
       @answers = Answer.all
+      authorize @answers
     end
   end
 
@@ -26,6 +28,7 @@ class AnswersController < ApplicationController
     if params[:question_id]
       @question = Question.find_by_id(params[:question_id])
       @answer = @question.answers.build
+      authorize @answer
     end
   end
 
@@ -35,6 +38,7 @@ class AnswersController < ApplicationController
   def create
     @question = Question.find(params[:question_id])
     @answer = @question.answers.create(answer_params)
+    authorize @answer
 
     if @answer.save
       redirect_to @question  
@@ -63,6 +67,8 @@ class AnswersController < ApplicationController
   def set_answer
     @question = Question.find_by_id(params[:question_id])
     @answer = @question.answers.find(params[:id])
+
+    authorize @answer
   end
 
   def answer_params

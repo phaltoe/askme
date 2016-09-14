@@ -21,15 +21,19 @@
         <% else %>
           <td>Anonymous</td>
         <% end %>
-        <td><%=l answer.created_at %></td>
+        <td><%= link_to answer.created_at, question_answer_path(answer.question, answer) %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_question_answer_path(answer.question, answer), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      question_answer_path(answer.question, answer),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-xs btn-danger' %>
+          <% if policy(answer).edit?  %>
+            <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                        edit_question_answer_path(answer.question, answer), :class => 'btn btn-default btn-xs' %>
+          <% end %>              
+          <% if policy(answer).destroy?  %>            
+            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                        question_answer_path(answer.question, answer),
+                        :method => :delete,
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-xs btn-danger' %>
+          <% end %>              
         </td>
       </tr>
     <% end %>
@@ -37,6 +41,8 @@
 </table>
 
 <%= link_to "Back", :back, :class => 'btn btn-default' %>
-<%= link_to t('.new', :default => t("helpers.links.new_answer")),
-            new_question_answer_path,
-            :class => 'btn btn-primary' %>
+<% if policy(Answer).new? %>
+  <%= link_to t('.new', :default => t("helpers.links.new_answer")),
+              new_question_answer_path,
+              :class => 'btn btn-primary' %>
+<% end %>

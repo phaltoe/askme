@@ -17,12 +17,19 @@
 </div>
 
 <%= link_to "Back", :back, :class => 'btn btn-default' %> 
-<%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_question_answer_path(@answer.question, @answer), :class => 'btn btn-default' %>
 <%= link_to t('.index', :default => t("helpers.links.show_all_answers")),
-                question_answers_path(@question), :class => 'btn btn-primary' %>              
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              question_answer_path(@answer.question, @answer),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+                question_answers_path(@question), :class => 'btn btn-primary' %> 
+
+<% if policy(@answer).edit? %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                edit_question_answer_path(@answer.question, @answer), :class => 'btn btn-default' %>
+<% end %>
+
+
+<% if policy(@answer).destroy? %>             
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                question_answer_path(@answer.question, @answer),
+                :method => 'delete',
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                :class => 'btn btn-danger' %>
+<% end %>
