@@ -1,6 +1,9 @@
 class QuestionsController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
+
   before_action :set_question, only: [:show, :edit, :update, :destroy]
+
+  before_filter :store_current_location, :unless => :devise_controller?
 
   helper_method :sort_column, :sort_direction
 
@@ -52,11 +55,11 @@ class QuestionsController < ApplicationController
 
     if type == "favorite" && !current_user.favorites.include?(@question)
       current_user.favorites << @question
-      redirect_to :back, notice: "You favorited #{@question.title}"
+      redirect_to :back
 
     elsif type == "unfavorite"
       current_user.favorites.delete(@question)
-      redirect_to :back, notice: "Unfavorited #{@question.title}"
+      redirect_to :back
 
     else
       # Type missing, nothing happens
@@ -82,6 +85,10 @@ class QuestionsController < ApplicationController
 
   def question_params
     params.require(:question).permit(:title, :content, :author_id, :category_ids => [], :categories_attributes => [:name])
+  end
+
+  def store_current_location
+    store_location_for(:user, request.url)
   end
 
 end
