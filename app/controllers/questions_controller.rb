@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
+  before_action :set_question, only: [:show, :edit, :update, :destroy]
 
   helper_method :sort_column, :sort_direction
 
@@ -9,7 +10,6 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.find(params[:id])
   end
 
   def new
@@ -17,11 +17,11 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    @question = Question.find(params[:id])
   end
 
   def create
     @question = current_user.authored_questions.build(question_params)
+    authorize @question
     if @question.save
       redirect_to @question
     else
@@ -31,7 +31,6 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    @question = Question.find(params[:id])
     if @question.update(question_params)
       flash[:message]
       redirect_to @question
@@ -42,7 +41,6 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    @question = Question.find(params[:id])
     @question.destroy
 
     redirect_to root_path
@@ -68,6 +66,11 @@ class QuestionsController < ApplicationController
 
 
   private
+
+  def set_question
+    @question = Question.find(params[:id])
+    authorize @question
+  end
 
   def sort_column
     Question.column_names.include?(params[:sort]) ? params[:sort] : "created_at"

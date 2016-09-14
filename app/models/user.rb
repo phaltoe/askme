@@ -28,6 +28,14 @@ class User < ActiveRecord::Base
 
   validates_presence_of :name
 
+  enum role: [:user, :admin]
+
+  after_initialize :set_default_role, if: :new_record?
+
+  def set_default_role
+    role ||= :user
+  end
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
