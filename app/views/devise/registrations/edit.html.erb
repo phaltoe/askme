@@ -27,15 +27,14 @@
   <div class="form-group">
     <%= f.label :password, :class => 'control-label col-lg-2' %> 
     <div class="col-lg-10">
-    <i>(leave blank if you don't want to change it)</i><br />
       <% if @minimum_password_length %>
-      <%= f.password_field :password, :class => 'form-control', autocomplete: "off", placeholder: "#{@minimum_password_length} characters minimum" %>
+      <%= f.password_field :password, :class => 'form-control', autocomplete: "off", placeholder: "#{@minimum_password_length} characters minimum - (leave blank if you don't want to change it)" %>
       <% end %>
     </div>  
   </div>
 
   <div class="form-group">
-    <%= f.label :password_confirmation, :class => 'control-label col-lg-2' %><br />
+    <%= f.label :password_confirmation, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10"> 
       <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control' %>
      </div> 
@@ -44,8 +43,8 @@
   <div class="form-group">
     <%= f.label :current_password, :class => 'control-label col-lg-2'  %> 
     <div class="col-lg-10"> 
-      <i>(we need your current password to confirm your changes)</i><br />
-      <%= f.password_field :current_password, autocomplete: "off", :class => 'form-control' %>
+      <%= f.password_field :current_password, autocomplete: "off", :class => 'form-control', 
+      :placeholder => "Unless you signed up using Facebook, we need your current password to confirm your changes" %>
     </div>  
   </div>
 
