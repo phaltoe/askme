@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'home/welcome'
+
+  get 'errors/not_found'
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", registrations: 'users/registrations' }
 
   resources :users, only: [:show]
@@ -10,6 +14,7 @@ Rails.application.routes.draw do
     resources :answers
     put :favorite, on: :member
   end
+
 
   # resources :users, only: :show
   # The priority is based upon order of creation: first created -> highest priority.

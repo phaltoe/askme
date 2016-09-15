@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
 
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
-  after_action :verify_authorized, except: :index
+  after_action :verify_authorized, except: [:index, :favorite]
 
   helper_method :sort_column, :sort_direction
 
@@ -13,10 +13,15 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    if @question.nil?
+      flash[:alert] = "Answer not Found"
+      redirect_to questions_path
+    end
   end
 
   def new
     @question = current_user.authored_questions.build
+    authorize @question
   end
 
   def edit
@@ -46,7 +51,7 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
 
-    redirect_to root_path
+    redirect_to questions_path
   end
 
    def favorite

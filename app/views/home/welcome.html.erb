@@ -1,0 +1,12 @@
+<div class="main-container">
+  <div class="fixer-container">
+    <ul class="list-of-floating-elements">
+      <li class="floated" <%= link_to image_tag('askme.png'), questions_path %></li>
+      <% if current_user %>
+        <%= link_to "Create Your Story", new_question_path, class: "btn btn-default" %>
+      <% else %>
+        <%= link_to "Sign up to create your travel story", new_user_registration_path, class: "btn btn-default" %>
+      <% end %>
+    </ul>
+  </div>
+</div>

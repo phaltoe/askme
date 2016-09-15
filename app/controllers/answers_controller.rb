@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
   before_filter :authenticate_user!, only: [:edit, :update, :destroy]
 
-  before_action :set_answer, only: [:show, :edit, :update, :destroy]
+  before_action :set_answer, only: [:edit, :update, :destroy]
 
   after_action :verify_authorized, except: :index
 
@@ -20,9 +20,16 @@ class AnswersController < ApplicationController
   end
 
   def show
-    if @answer.nil?
-      flash[:alert] = "Answer not Found"
-      redirect_to question_answers_path(@question)
+    if params[:question_id]
+      @question = Question.find_by_id(params[:question_id])
+      authorize @question
+      @answer = @question.answers.find_by_id(params[:id])
+      if @answer.nil?
+        flash[:alert] = "answer not found"
+        redirect_to question_answers_path(@question)
+      end
+    else
+      @answer = Answer.find(params[:id])
     end
   end
 
@@ -62,6 +69,8 @@ class AnswersController < ApplicationController
 
   def destroy
     @answer.destroy
+
+    redirect_to question_answer_path(@answer.question, @answer)
   end
 
   private

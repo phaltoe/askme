@@ -18,6 +18,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+ 
+
   protected
 
   def configure_permitted_parameters
@@ -26,5 +29,11 @@ class ApplicationController < ActionController::Base
 
   def store_current_location
     store_location_for(:user, request.url)
+  end
+
+  private
+ 
+  def record_not_found
+    render errors_not_found_path, status: 404
   end  
 end
