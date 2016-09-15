@@ -1,17 +1,9 @@
 <%- model_class = Answer -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
-  <h5><%= link_to @answers.first.question.title, question_path(@answers.first.question) %></h5>
+  <h3><small><%= link_to @answers.first.question.title, question_path(@answers.first.question) %></small></h3>
 </div>
 <table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:content) %></th>
-      <th><%= model_class.human_attribute_name(:author) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
   <tbody>
     <% @answers.each do |answer| %>
       <tr>
@@ -21,8 +13,10 @@
         <% else %>
           <td>Anonymous</td>
         <% end %>
-        <td><%= link_to answer.created_at, question_answer_path(answer.question, answer) %></td>
+        <td><%= answer.created_at.strftime("%d %b. %Y") %></td>
         <td>
+          <%= link_to t('.edit', :default => t("helpers.links.show_answer")),
+                        question_answer_path(answer.question, answer), :class => 'btn btn-primary btn-xs' %>  
           <% if policy(answer).edit?  %>
             <%= link_to t('.edit', :default => t("helpers.links.edit")),
                         edit_question_answer_path(answer.question, answer), :class => 'btn btn-default btn-xs' %>

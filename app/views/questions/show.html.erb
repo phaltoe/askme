@@ -8,7 +8,7 @@
 </div>
 
 <dl class="dl-horizontal">
-  <h4><%= @question.content %></h4>
+  <h4><small><%= @question.content %></small></h4>
   
 </dl>
 
@@ -37,8 +37,27 @@
   <% @question.answers[0..2].each do |answer| %>
   </br>
     <% if answer.answerer %>
-      <dd><%= link_to answer.answerer.name, user_path(answer.answerer) %> wrote on <%= link_to answer.created_at.strftime("%d %b. %Y"), question_answer_path(answer.question, answer) %> | <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                        edit_question_answer_path(@question, answer), :class => ' btn-info btn-xs' %> </dd>
+      <dd>
+        <%= link_to answer.answerer.name, user_path(answer.answerer) %> 
+        wrote on <%= answer.created_at.strftime("%d %b. %Y") %> | 
+
+        <% if policy(answer).show? %>
+          <%= link_to t('.show', :default => t("helpers.links.show_answer")),
+                            question_answer_path(@question, answer), :class => ' btn-primary btn-xs'   %>
+        <% end %>
+        <% if policy(answer).edit? %>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                          edit_question_answer_path(@question, answer), :class => ' btn-info btn-xs' %>
+
+        <% end %>
+        <% if policy(answer).destroy? %>
+            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                          question_answer_path(answer.question, answer),
+                          :method => :delete,
+                          :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                          :class => 'btn-xs btn-danger' %>  
+        <% end %>
+      </dd>
       <dd><%= simple_format answer.content %></dd>
     <% else %>  
       <dd> Anonymous wrote on <%= answer.created_at.strftime("%d %b. %Y") %></dd>
