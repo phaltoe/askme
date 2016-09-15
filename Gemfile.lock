@@ -71,6 +71,8 @@ GEM
       multipart-post (>= 1.2, < 3)
     font-awesome-rails (4.6.3.1)
       railties (>= 3.2, < 5.1)
+    friendly_id (5.1.0)
+      activerecord (>= 4.0.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     hashie (3.4.4)
@@ -242,6 +244,7 @@ DEPENDENCIES
   devise
   faker
   font-awesome-rails
+  friendly_id (~> 5.1.0)
   jbuilder (~> 2.0)
   jquery-rails
   less-rails

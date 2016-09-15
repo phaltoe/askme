@@ -10,6 +10,7 @@ gem "twitter-bootstrap-rails"
 gem 'bootstrap-social-rails'
 gem 'font-awesome-rails'
 gem 'pundit'
+gem 'friendly_id', '~> 5.1.0'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

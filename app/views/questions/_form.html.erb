@@ -31,7 +31,7 @@
     <%= f.label "New Category", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
     <%= f.fields_for :categories, @question.categories.build do |category| %>
-        <%= category.text_field :name, :class => 'form-control', :placeholder => "Add a new category" %>      
+        <em><%= category.text_field :name, :class => 'form-control', :placeholder => "Add a new category" %> </em>     
       <% end %>  
     </div>
   </div>
