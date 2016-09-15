@@ -3,6 +3,8 @@ class AnswersController < ApplicationController
 
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
 
+  after_action :verify_authorized, except: :index
+
   def index
     if params[:question_id]
       begin

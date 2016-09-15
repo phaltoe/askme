@@ -12,8 +12,11 @@
   </br>
   <dd><strong><%= model_class.human_attribute_name(:Answers) %>:</strong></dd>
   </br>
-  <% @user.answers.select do |answer| %>
+
+  <% @user.answers.each do |answer| %>
+    <% if answer.question.present? %>
     <dd><%= link_to truncate(answer.content, length: 50) + "(read more)", question_answer_path(answer.question, answer) %></dd>
+    <% end %>
 
   <% end %> 
   

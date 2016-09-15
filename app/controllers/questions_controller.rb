@@ -3,6 +3,8 @@ class QuestionsController < ApplicationController
 
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
+  after_action :verify_authorized, except: :index
+
   helper_method :sort_column, :sort_direction
 
   def index
