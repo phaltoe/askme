@@ -24,29 +24,31 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.label :password, :class => 'control-label col-lg-2' %> 
-    <div class="col-lg-10">
-      <% if @minimum_password_length %>
-      <%= f.password_field :password, :class => 'form-control', autocomplete: "off", placeholder: "#{@minimum_password_length} characters minimum - (leave blank if you don't want to change it)" %>
-      <% end %>
-    </div>  
-  </div>
+  <% if @user.uid.nil? %>
+    <div class="form-group">
+      <%= f.label :password, :class => 'control-label col-lg-2' %> 
+      <div class="col-lg-10">
+        <% if @minimum_password_length %>
+        <em><%= f.password_field :password, :class => 'form-control', autocomplete: "off", placeholder: "#{@minimum_password_length} characters minimum" %></em>
+        <% end %>
+      </div>  
+    </div>
 
-  <div class="form-group">
-    <%= f.label :password_confirmation, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10"> 
-      <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control' %>
-     </div> 
-  </div>
+    <div class="form-group">
+      <%= f.label :password_confirmation, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-10"> 
+        <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control' %>
+       </div> 
+    </div>
 
-  <div class="form-group">
-    <%= f.label :current_password, :class => 'control-label col-lg-2'  %> 
-    <div class="col-lg-10"> 
-      <%= f.password_field :current_password, autocomplete: "off", :class => 'form-control', 
-      :placeholder => "Unless you signed up using Facebook, we need your current password to confirm your changes" %>
-    </div>  
-  </div>
+    <div class="form-group">
+      <%= f.label :current_password, :class => 'control-label col-lg-2'  %> 
+      <div class="col-lg-10"> 
+        <em><%= f.password_field :current_password, autocomplete: "off", :class => 'form-control', 
+        :placeholder => "We need your current password to confirm your changes" %></em>
+      </div>  
+    </div>
+  <% end %>
 
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
