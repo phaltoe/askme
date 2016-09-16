@@ -3,7 +3,7 @@ class AnswersController < ApplicationController
 
   before_action :set_answer, only: [:edit, :update, :destroy]
 
-  after_action :verify_authorized, except: :index
+  after_action :verify_authorized, except: [:index, :new]
 
   def index
     if params[:question_id]
@@ -36,7 +36,6 @@ class AnswersController < ApplicationController
   def new
     @question = Question.friendly.find(params[:question_id])
     @answer = @question.answers.build
-    authorize @answer
   end
 
   def edit

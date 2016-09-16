@@ -55,7 +55,7 @@ class QuestionsController < ApplicationController
   end
 
    def favorite
-    @question = Question.find(params[:id])
+    @question = Question.friendly.find(params[:id])
     type = params[:type]
 
     if type == "favorite" && !current_user.favorites.include?(@question)

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # root 'home#welcome'
+  get 'home/welcome'
 
   authenticated :user do
   root 'questions#index', as: :authenticated_root
