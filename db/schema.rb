@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160916011457) do
+ActiveRecord::Schema.define(version: 20160916211903) do
 
   create_table "answers", force: :cascade do |t|
     t.string   "content"
@@ -64,9 +64,9 @@ ActiveRecord::Schema.define(version: 20160916011457) do
     t.string   "title"
     t.string   "content"
     t.integer  "author_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.integer  "answers_count"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "answers_count", default: 0
     t.string   "slug"
   end
 
