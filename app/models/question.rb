@@ -34,7 +34,7 @@ class Question < ActiveRecord::Base
   end
 
   def self.most_answered
-    self.order("answers_count DESC").limit(3)
+    self.order("answers_count ASC").limit(3)
   end
 
 end
