@@ -54,7 +54,6 @@ body {
 }
 
 .full {
-    background: url(<%= asset_path 'logo.jpg' %>);
     background-repeat: no-repeat;
     background-position: fixed;    
     -webkit-background-size: cover;
