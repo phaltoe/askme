@@ -23,7 +23,7 @@
     <%= f.label :password, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <% if @minimum_password_length %>
-        <%= f.password_field :password, :class => 'form-control', autocomplete: "off", placeholder: "#{@minimum_password_length} characters minimum " %>
+        <em><%= f.password_field :password, :class => 'form-control', autocomplete: "off", placeholder: "#{@minimum_password_length} characters minimum " %></em>
       <% end %>
     </div>
   </div>

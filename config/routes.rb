@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  root 'home#welcome'
+  # root 'home#welcome'
+
+  authenticated :user do
+  root 'questions#index', as: :authenticated_root
+end
+
+unauthenticated :user do
+  root 'home#welcome', as: :unauthenticated_root
+end
 
   get 'errors/not_found'
 
@@ -7,8 +15,6 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show]
   resources :categories, only: [:show]
-
-  # root 'questions#index'
 
   resources :questions do
     resources :answers

@@ -45,11 +45,12 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" <%= link_to image_tag('logo.png'), root_path, id: "logo" %></a>
+        <a class="navbar-brand" <%= link_to image_tag('logo.png'), authenticated_root_path, id: "logo" %></a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
           </ul>
           <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to 'Questions', questions_path%></li>
             <%= render 'devise/menu/registration_items' %>
             <%= render 'devise/menu/login_items' %>
           </ul>
@@ -65,12 +66,22 @@
         </div>
          <%= render 'layouts/sidebar' unless @disable_nav %> 
       </div><!--/row-->
-
-      <footer>
-        <p>&copy; AskMe! 2016</p>
-      </footer>
+    <div id="footer">
+      <div class="container text-center">
+        <p class="text-muted credit">&copy; AskMe! 2016 - Was Made With <i class="glyphicon glyphicon-heart" style="color:red"></i></p>
+        <div class="social">
+          <a href="http://www.facebook.com">
+            <span class="fa fa-facebook" style="color:#3B5998"></span></a>
+          <a href="http://www.github.com">
+            <i class="fa fa-github" style="color:#333333"></i></a>
+          <a href="http://www.twitter.com">
+            <i class="fa fa-twitter" style="color:#33CCFF"></i></a>
+          <a href="http://www.linkedin.com">
+            <i class="fa fa-linkedin" style="color:#007bb5"></i></a>  
+        </div>
+      </div>
+    </div>
 
     </div> <!-- /container -->
-
   </body>
 </html>

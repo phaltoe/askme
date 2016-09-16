@@ -1,12 +1,24 @@
-<div class="container">
+<div class="container fluid full">
   <div class="row">
-    <div class="span4"> <%= image_tag 'logo.png', :class => "center-block" %></div><br />
-    <div class="span4"><br />
-      <% if current_user %>
-         <%= link_to "Ask a Question!", new_question_path, class: "btn btn-info center-block" %>
-      <% else %>
-         <%= link_to "Sign up and Create Your Question!", new_user_registration_path, class: "btn btn-info center-block" %>
-      <% end %>
-    </div>
+    <div class="span4"> <%= image_tag 'logo.png', :class => "center-block welcome-image" %></div><br />
   </div>
+</div>  
+<div class="col-md-3 col-md-offset-6"><br />
+  <% if current_user %>
+     <%= link_to "Welcome!!!! Click Here To Ask a Question!", new_question_path, class: "btn btn-info" %>
+  <% else %>
+    <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+      <br />
+      <%= link_to "Please Sign Up In Order To Ask A Question", new_registration_path(resource_name), :class => 'btn btn-info log-block' %>
+    <% end -%> 
+
+    <%- if devise_mapping.omniauthable? %>
+      <%- resource_class.omniauth_providers.each do |provider| %>
+      <br />
+        <%= link_to omniauth_authorize_path(resource_name, provider), :class => 'btn btn-social btn-facebook log-block' do %> 
+          <span class="fa fa-facebook"></span>You Can Also Sign In Using Facebook
+        <% end %>
+      <% end -%>
+    <% end %> 
+  <% end %>
 </div>

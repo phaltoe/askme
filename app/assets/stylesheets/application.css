@@ -39,10 +39,21 @@ body { padding-top: 70px; }
 
 .floated{float:left; margin-right:10px;}  
 
-.center-block {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 100px;
-    margin-bottom: auto;
- }
+.log-block {
+    margin-bottom: 20px !important;
+}
+
+.welcome-image {
+    margin: 50px;
+}
+
+.full {
+    background: url(<%= asset_path 'logo.jpg' %>);
+    background-repeat: no-repeat;
+    background-position: fixed;    
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    height:100%;
+}
