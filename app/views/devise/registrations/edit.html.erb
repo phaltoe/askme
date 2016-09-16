@@ -48,6 +48,13 @@
         :placeholder => "We need your current password to confirm your changes" %></em>
       </div>  
     </div>
+
+    <div class="form-group">
+      <%= f.label "Admin?", :class => 'control-label col-lg-2' %>
+      <div class="col-lg-10">
+        <%= f.check_box :role, :class => 'form-control' %>
+      </div>  
+    </div>
   <% end %>
 
   <div class="form-group">

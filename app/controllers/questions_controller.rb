@@ -87,7 +87,7 @@ class QuestionsController < ApplicationController
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
-
+  
   def question_params
     params.require(:question).permit(:title, :content, :author_id, :category_ids => [], :categories_attributes => [:name])
   end

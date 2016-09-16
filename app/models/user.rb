@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   after_initialize :set_default_role, if: :new_record?
 
   def set_default_role
-    role ||= :user
+    role.to_i ||= :user
   end
 
   def self.from_omniauth(auth)
