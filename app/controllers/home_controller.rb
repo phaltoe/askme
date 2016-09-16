@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def welcome
-    render layout: false
+    @disable_nav = true
   end
 end

@@ -1,12 +1,12 @@
-<div class="main-container">
-  <div class="fixer-container">
-    <ul class="list-of-floating-elements">
-      <li class="floated" <%= link_to image_tag('askme.png'), questions_path %></li>
+<div class="container">
+  <div class="row">
+    <div class="span4"> <%= image_tag 'logo.png', :class => "center-block" %></div><br />
+    <div class="span4"><br />
       <% if current_user %>
-        <%= link_to "Create Your Story", new_question_path, class: "btn btn-default" %>
+         <%= link_to "Ask a Question!", new_question_path, class: "btn btn-info center-block" %>
       <% else %>
-        <%= link_to "Sign up to create your travel story", new_user_registration_path, class: "btn btn-default" %>
+         <%= link_to "Sign up and Create Your Question!", new_user_registration_path, class: "btn btn-info center-block" %>
       <% end %>
-    </ul>
+    </div>
   </div>
 </div>

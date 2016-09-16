@@ -63,17 +63,7 @@
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
-        <div class="col-lg-3">
-          <div class="well sidebar-nav">
-            <h3>Trending Questions</h3>
-            <ul class="nav nav-list">
-              <li class="nav-header nav-fixed"></li>
-              <% Question.most_answered[0..2].each do |question| %>
-                <li><%= link_to question.title, question_path(question) %></li>
-              <% end %>  
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
+         <%= render 'layouts/sidebar' unless @disable_nav %> 
       </div><!--/row-->
 
       <footer>

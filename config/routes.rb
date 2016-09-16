@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'home/welcome'
+  root 'home#welcome'
 
   get 'errors/not_found'
 
@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :categories, only: [:show]
 
-  root 'questions#index'
+  # root 'questions#index'
 
   resources :questions do
     resources :answers
