@@ -52,7 +52,7 @@
     <div class="form-group">
     <%= f.label "Admin", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.radio_button :role, "admin"%>
+      <%= f.check_box :role, {}, "admin", "" %>
     </div>  
   </div>
   <% end %>
