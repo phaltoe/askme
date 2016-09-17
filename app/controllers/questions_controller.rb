@@ -14,7 +14,6 @@ class QuestionsController < ApplicationController
 
   def show
     if @question.nil?
-      flash[:alert] = "Answer not Found"
       redirect_to questions_path
     end
   end

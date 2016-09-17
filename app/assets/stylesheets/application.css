@@ -53,15 +53,6 @@ body {
     margin: 50px;
 }
 
-.full {
-    background-repeat: no-repeat;
-    background-position: fixed;    
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
-    height:100%;
-}
 
 body.welcome {
     background: #603813; /* fallback for old browsers */

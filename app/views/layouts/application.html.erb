@@ -61,7 +61,8 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-9">
-          <%= bootstrap_flash %>
+          <!-- <#%= bootstrap_flash %> -->
+          <%= render partial: "layouts/flash_messages", flash: flash %>
           <%= yield %>
         </div>
          <%= render 'layouts/sidebar' unless @disable_nav %> 

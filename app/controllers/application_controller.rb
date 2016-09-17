@@ -34,6 +34,6 @@ class ApplicationController < ActionController::Base
   private
  
   def record_not_found
-    redirect_to errors_not_found_path, status: 404
+    render errors_not_found_path, status: 404
   end  
 end
