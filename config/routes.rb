@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-  get 'home/welcome'
+  root 'home#welcome'
 
-  authenticated :user do
-  root 'questions#index', as: :authenticated_root
-end
+#   authenticated :user do
+#   root 'questions#index', as: :authenticated_root
+# end
 
-unauthenticated :user do
-  root 'home#welcome', as: :unauthenticated_root
-end
+# unauthenticated :user do
+#   root 'home#welcome', as: :unauthenticated_root
+# end
 
   get 'errors/not_found'
 

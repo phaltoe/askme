@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   include Pundit
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  
   protect_from_forgery with: :exception
 
   before_filter :store_current_location, :unless => :devise_controller?
@@ -18,7 +20,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
  
 
   protected
