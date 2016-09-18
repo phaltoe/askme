@@ -16,7 +16,7 @@
       <tr>
         <td><%= link_to question.title, question %></td>
         <td><%= link_to question.author.name, user_path(question.author) %></td>
-        <td><%= question.created_at.strftime("%d %b. %Y") %></td>
+        <td><%= question.created_at.time.to_formatted_s(:long) %></td>
         <td>
           <%= link_to t('.answer', :default => t("helpers.links.answer")),
                       new_question_answer_path(question), :class => ' btn-warning btn-xs'  %> 

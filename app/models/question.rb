@@ -37,4 +37,12 @@ class Question < ActiveRecord::Base
     self.order("answers_count DESC").limit(3)
   end
 
+  def first_answers
+    answers.limit(3)
+  end
+
+  def have_more_answers
+    answers.count > 3
+  end
+
 end

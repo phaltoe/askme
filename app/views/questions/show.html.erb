@@ -37,15 +37,9 @@
 </br>
 </br>
 <dl>
-  <% @question.answers[0..2].each do |answer| %>
+  <% @question.first_answers.each do |answer| %>
   </br>
-    <% if answer.answerer %>
-      <dd>
-        <%= link_to answer.answerer.name, user_path(answer.answerer) %> 
-        wrote on <%= answer.created_at.strftime("%d %b. %Y") %> | 
-    <% else %>  
-      <dd> Anonymous wrote on <%= answer.created_at.strftime("%d %b. %Y") %> |
-    <% end %>   
+    <%= render 'answers/first_answers', answer: answer %> |   
 
     <% if policy(answer).show? %>
       <%= link_to t('.show', :default => t("helpers.links.show_answer")),
@@ -67,7 +61,7 @@
       <dd><%= simple_format answer.content %></dd> 
   </br>  
   <% end %>  
-  <% if @question.answers.size > 3 %>
+  <% if @question.have_more_answers %>
     <%= link_to t('.index', :default => t("helpers.links.show_all_answers")),
                   question_answers_path(@question), :class => 'btn btn-primary' %>
   <% end %>                
