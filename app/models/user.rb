@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
   extend FriendlyId
 
-  friendly_id :name, use: :slugged 
+  friendly_id :name, 
+               use: :slugged 
 
   has_many :authored_questions, 
             class_name: 'Question', 
