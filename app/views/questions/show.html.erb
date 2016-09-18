@@ -15,52 +15,16 @@
   <h4><small><%= @question.content %></small></h4> 
 </dl>
 
-<%= link_to "Back", :back, :class => 'btn btn-default' %>              
-<%= link_to t('.Answer this Question', :default => t("helpers.links.Answer this Question!")),
-              new_question_answer_path(@question), :class => 'btn btn-primary'  %>
-
-<% if current_user %>
-  <%= render 'favorite', question: @question %>             
-<% end %>                           
-            
-<% if policy(@question).edit?  %>                   
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                edit_question_path(@question), :class => 'btn btn-default' %>
-<% end %>                
-<% if policy(@question).destroy?  %>                                
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              question_path(@question),
-              :method => :delete,
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => ' btn btn-danger'%>
-<% end %> 
-</br>
-</br>
+<%= render 'show_actions', question: @question %></br></br>
 <dl>
-  <% @question.first_answers.each do |answer| %>
-  </br>
+  <% @question.first_answers.each do |answer| %></br>
+
     <%= render 'answers/first_answers', answer: answer %> |   
+    <%= render 'question_answer_actions', question: @question, answer: answer %>  
 
-    <% if policy(answer).show? %>
-      <%= link_to t('.show', :default => t("helpers.links.show_answer")),
-                        question_answer_path(@question, answer), :class => ' btn-primary btn-xs'   %>
-    <% end %>
-    <% if policy(answer).edit? %>
-      <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_question_answer_path(@question, answer), :class => ' btn-info btn-xs' %>
-
-    <% end %>
-    <% if policy(answer).destroy? %>
-        <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      question_answer_path(answer.question, answer),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn-xs btn-danger' %>  
-    <% end %>
-      </dd>
-      <dd><%= simple_format answer.content %></dd> 
-  </br>  
-  <% end %>  
+    <dd><%= simple_format answer.content %></dd> </br>  
+  <% end %> 
+   
   <% if @question.have_more_answers %>
     <%= link_to t('.index', :default => t("helpers.links.show_all_answers")),
                   question_answers_path(@question), :class => 'btn btn-primary' %>
