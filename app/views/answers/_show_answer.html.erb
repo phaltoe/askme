@@ -1,0 +1,7 @@
+<% if answer.answerer %>
+  <%= link_to answer.answerer.name, user_path(answer.answerer) %> <em>wrote on</em> <%= answer.created_at.time.to_formatted_s(:long) %><br />
+  <%= simple_format answer.content %>
+<% else %>  
+   Anonymous <%= answer.created_at.time.to_formatted_s(:long) %>
+  <%= answer.content %>
+<% end %>
