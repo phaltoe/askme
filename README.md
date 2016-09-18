@@ -1,40 +1,51 @@
-== README
+![AskMe](https://github.com/phaltoe/askme/blob/master/app/assets/images/logo.png)
 
-The goal of this project is to build an APP that can:
+##Preview
+http://askmeapp.herokuapp.com
 
-***Users***
-1 - Create Questions
-2 - Provide Answers
-3 - Add Categories to Questions
-4 - Edit Own Questions 
-5 - Destroy Own Questions
+## Introduction
 
-***Moderators***
-1 - All of the above in anyone's Questions/Answers
+AskMe! is a simple Rails App of Questions & Answers.  Simple as that:  Ask questions, get answers.
 
-***Admin***
-1 - Can do anything
+## Author
+* "Pedro Henrique Altoé"   <phaltoe85@gmail.com> 
+* Twitter: <https://twitter.com/HPedro20>
 
----------------
+## Gems Used
+* Devise => <https://github.com/plataformatec/devise>
+* Omniauth => <https://github.com/omniauth/omniauth>
+* Pundit => <https://github.com/elabs/pundit>
+* Friendly_id => <https://github.com/norman/friendly_id>
+* Twitter-bootstrap-rails => <https://github.com/seyhunak/twitter-bootstrap-rails>
 
-***RELATIONSHIPS***
 
-* Question has many answers
-* Question has many answerers(users) through answers
-* Question belongs to an author (user)
+## Installation 
+`git clone git@github.com:phaltoe/askme.git`
 
-* Answer belongs to a question
-* Answer belongs to an answerer(user)
+`cd askme`
 
-* User has many authored_questions
-* User has many answers 
-* User has many answered_questions through answers
+`rake db:migrate`
 
----------------
+`rails s`
 
-*How can I create a new question for an user?*
+`Open http://localhost:3000`
 
-*How can I query the author(user) of a question?*
+Have fun!
 
-*How can I find all the questions a user has answered on?*
+## How it Looks Like?
+![Screenshot](https://github.com/phaltoe/askme/blob/master/app/assets/images/screenshot.png)
+
+## ToDo List
+* Add Upvote/Downvote to Answers
+* Separate Categories by commas 
+* Anything you like to see?  Feel free to collaborate or ask me to do!
+
+## License
+
+AskMe! is released under the [MIT License](http://www.opensource.org/licenses/MIT).
+
+
+
+
+
 
