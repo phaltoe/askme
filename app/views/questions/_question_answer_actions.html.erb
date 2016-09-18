@@ -1,3 +1,4 @@
+<%= render 'answers/first_answers', answer: answer %> |
 <% if policy(answer).show? %>
   <%= link_to t('.show', :default => t("helpers.links.show_answer")),
                     question_answer_path(question, answer), :class => ' btn-primary btn-xs'   %>

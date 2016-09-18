@@ -1,4 +1,3 @@
-<%= render 'answers/first_answers', answer: answer %> |
 <%= link_to t('.answer', :default => t("helpers.links.answer")),
                       new_question_answer_path(question), :class => ' btn-warning btn-xs'  %> 
 <% if policy(question).edit?  %>                   

@@ -16,15 +16,13 @@
 </dl>
 
 <%= render 'show_actions', question: @question %></br></br>
+
 <dl>
-  <% @question.first_answers.each do |answer| %></br>
-
-    <%= render 'answers/first_answers', answer: answer %> |   
+  <% @question.first_answers.each do |answer| %></br>  
     <%= render 'question_answer_actions', question: @question, answer: answer %>  
-
     <dd><%= simple_format answer.content %></dd> </br>  
   <% end %> 
-   
+
   <% if @question.have_more_answers %>
     <%= link_to t('.index', :default => t("helpers.links.show_all_answers")),
                   question_answers_path(@question), :class => 'btn btn-primary' %>

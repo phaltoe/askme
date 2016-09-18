@@ -23,4 +23,8 @@
   </tbody>
 </table>
 
-<%= render 'new_question' %>
+<% if policy(Question).new? %>
+  <%= link_to t('.new', :default => t("helpers.links.Ask_a_New_Question!")),
+              new_question_path,
+              :class => 'btn btn-primary' %>
+<% end %>              
