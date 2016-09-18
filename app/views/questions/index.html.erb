@@ -14,7 +14,7 @@
   <tbody>
     <% @questions.each do |question| %>
       <tr>
-        <td><%= link_to question.title, question %></td>
+        <td><%= link_to truncate(question.title, length: 50), question %></td>
         <td><%= link_to question.author.name, user_path(question.author) %></td>
         <td><%= question.created_at.time.to_formatted_s(:long) %></td>
         <td><%= render 'index_question_actions', question: question %></td>
