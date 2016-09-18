@@ -32,6 +32,9 @@ AskMe! is a simple Rails App of Questions & Answers.  Simple as that:  Ask quest
 
 Have fun!
 
+## How it Looks Like?
+![Screenshot](https://github.com/phaltoe/askme/blob/master/app/assets/images/screenshot.png)
+
 ## License
 
 AskMe! is released under the [MIT License](http://www.opensource.org/licenses/MIT).
