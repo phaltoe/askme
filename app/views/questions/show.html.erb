@@ -1,68 +1,60 @@
 <%- model_class = Question -%>
 <div class="page-header">
+
   <h1><%= @question.title %></h1>
+
   <% @question.categories.each do |category| %>
-  <%= link_to tag_label(category.name, :default), category %>
+    <%= link_to tag_label(category.name, :default), category %>
   <% end %>
+
   <h6><%= link_to @question.author.name, user_path(@question.author) %></h6> 
+
 </div>
 
 <dl class="dl-horizontal">
-  <h4><small><%= @question.content %></small></h4>
-  
+  <h4><small><%= @question.content %></small></h4> 
 </dl>
 
 <%= link_to "Back", :back, :class => 'btn btn-default' %>              
-<%= link_to t('.Answer this Question', :default => t("helpers.links.Answer this Question!")),
-              new_question_answer_path(@question), :class => 'btn btn-primary'  %>
+<%= render 'answers/new_answer', question: @question %>
 
 <% if current_user %>
-  <%= link_to t('.favorite!'), 
-                favorite_question_path(@question, type: "favorite"), method: :put, :class => 'btn btn-success' unless @question.favorited_by.include?(current_user) %>
-  <%= link_to t('.unfavorite!'), 
-                favorite_question_path(@question, type: "unfavorite"), method: :put, :class => 'btn btn-danger' if @question.favorited_by.include?(current_user) %>              
+  <%= render 'favorite', question: @question %>             
 <% end %>                           
             
 <% if policy(@question).edit?  %>                   
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_question_path(@question), :class => 'btn btn-default' %>
-<% end %>                
+                edit_question_path(@question), :class => 'btn btn-default' %>
+<% end %> 
+
 <% if policy(@question).destroy?  %>                                
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              question_path(@question),
-              :method => :delete,
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => ' btn btn-danger'%>
-<% end %> 
+                question_path(@question),
+                :method => :delete,
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => '  Are you sure?')) },
+                :class => ' btn btn-danger'%>
+<% end %> </br>
 </br>
-</br>
+
 <dl>
-  <% @question.first_answers.each do |answer| %>
-  </br>
+  <% @question.first_answers.each do |answer| %> </br>
     <%= render 'answers/first_answers', answer: answer %> |   
 
     <% if policy(answer).show? %>
-      <%= link_to t('.show', :default => t("helpers.links.show_answer")),
-                        question_answer_path(@question, answer), :class => ' btn-primary btn-xs'   %>
+      <%= render 'answers/show_answer', question: @question, answer: answer %>
     <% end %>
     <% if policy(answer).edit? %>
-      <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_question_answer_path(@question, answer), :class => ' btn-info btn-xs' %>
-
+      <%= render 'answers/edit_answer', question: @question, answer: answer %>
     <% end %>
     <% if policy(answer).destroy? %>
-        <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      question_answer_path(answer.question, answer),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn-xs btn-danger' %>  
+      <%= render 'answers/delete_answer', answer: answer %> 
     <% end %>
-      </dd>
-      <dd><%= simple_format answer.content %></dd> 
-  </br>  
+
+  </dd>
+  <dd><%= simple_format answer.content %></dd> </br>  
   <% end %>  
+
   <% if @question.have_more_answers %>
-    <%= link_to t('.index', :default => t("helpers.links.show_all_answers")),
-                  question_answers_path(@question), :class => 'btn btn-primary' %>
+    <%= render 'answers/index_answers', question: @question %>
   <% end %>                
 </dl>              

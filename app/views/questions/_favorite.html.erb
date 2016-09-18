@@ -1,0 +1,4 @@
+<%= link_to t('.favorite!'), 
+                favorite_question_path(question, type: "favorite"), method: :put, :class => 'btn btn-success' unless question.favorited_by.include?(current_user) %>
+<%= link_to t('.unfavorite!'), 
+              favorite_question_path(question, type: "unfavorite"), method: :put, :class => 'btn btn-danger' if question.favorited_by.include?(current_user) %> 
