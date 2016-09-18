@@ -35,6 +35,11 @@ Have fun!
 ## How it Looks Like?
 ![Screenshot](https://github.com/phaltoe/askme/blob/master/app/assets/images/screenshot.png)
 
+## ToDo List
+* Add Upvote/Downvote to Answers
+* Separate Categories by commas 
+* Anything you like to see?  Feel free to collaborate or ask me to do!
+
 ## License
 
 AskMe! is released under the [MIT License](http://www.opensource.org/licenses/MIT).
