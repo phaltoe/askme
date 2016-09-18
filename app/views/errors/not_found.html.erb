@@ -1,8 +1,11 @@
 <div class="container">
   <div class="row">
     <div class="span4"></div>
-    <div class="span4"> <%= image_tag '404.png', :class => "center-block" %></div>
-    <div class="span4"><%= link_to t('.question', :default => t("helpers.links.return_to_questions_")),
-                    questions_path, :class => 'btn btn-primary center-block' %></div>
+    <div class="span4"><%= image_tag '404.png', :class => "center-block" %></div>
+    <div class="span4">
+      <%= link_to t('.question', :default => t("helpers.links.return_to_questions_")),
+                    questions_path, :class => 'btn btn-primary center-block' %>
+                      
+    </div>
   </div>
 </div>

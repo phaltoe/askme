@@ -5,22 +5,6 @@
     </div>
   </div>  
   <div class="col-md-3 col-md-offset-6">
-    <% if current_user %>
-       <%= link_to "Click Here - Ask a Question", new_question_path, class: "btn btn-info log-block  col-md-offset-3 text-center " %>
-    <% else %>
-      <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-        <br />
-        <%= link_to "Sign Up To Ask A Question", new_registration_path(resource_name), :class => 'btn btn-info log-block col-md-offset-3 text-center ' %>
-      <% end -%> 
-
-      <%- if devise_mapping.omniauthable? %>
-        <%- resource_class.omniauth_providers.each do |provider| %>
-        <br />
-          <%= link_to omniauth_authorize_path(resource_name, provider), :class => 'btn btn-social btn-facebook log-block col-md-offset-3 text-center' do %> 
-            <span class="fa fa-facebook"></span>Login With Facebook!
-          <% end %>
-        <% end -%>
-      <% end %> 
-    <% end %>
+    <%= render 'welcome_actions' %>
   </div>
 </body>  
