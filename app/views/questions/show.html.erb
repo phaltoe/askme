@@ -15,7 +15,8 @@
   <h4><small><%= @question.content %></small></h4> 
 </dl>
 
-<%= link_to "Back", :back, :class => 'btn btn-default' %>              
+<%= link_to "Back", :back, :class => 'btn btn-default' %>  
+
 <%= render 'answers/new_answer', question: @question %>
 
 <% if current_user %>
@@ -23,16 +24,11 @@
 <% end %>                           
             
 <% if policy(@question).edit?  %>                   
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                edit_question_path(@question), :class => 'btn btn-default' %>
+  <%= render 'edit_question', question: @question %>
 <% end %> 
 
 <% if policy(@question).destroy?  %>                                
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                question_path(@question),
-                :method => :delete,
-                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => '  Are you sure?')) },
-                :class => ' btn btn-danger'%>
+  <%= render 'destroy_question', question: @question %>
 <% end %> </br>
 </br>
 
@@ -47,7 +43,7 @@
       <%= render 'answers/edit_answer', question: @question, answer: answer %>
     <% end %>
     <% if policy(answer).destroy? %>
-      <%= render 'answers/delete_answer', answer: answer %> 
+      <%= render 'answers/destroy_answer', answer: answer %> 
     <% end %>
 
   </dd>
