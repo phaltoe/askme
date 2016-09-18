@@ -1,0 +1,33 @@
+<% if user.has_created_any_question %>
+    <dd><strong>Questions Asked:</strong></dd></br>
+    
+    <% user.authored_questions.each do |question| %>
+      <dd><%= link_to question.title, question %></dd>
+    <% end %></br>
+  <% end %>  
+
+
+  <% if user.has_answered_any_question %>
+    <dd><strong>Answers:</strong></dd></br>
+
+    <% user.answers.each do |answer| %>
+      <% if answer.question.present? %>
+      <dd><%= link_to truncate(answer.content, length: 50) + "(read more)", question_answer_path(answer.question, answer) %></dd>
+      <% end %>
+    <% end %> </br>
+  <% end %> 
+
+  <% if user.has_favorite_questions %>
+    <dd><strong>Favorited Questions:</strong></dd></br>
+    
+    <% user.favorites.each do |favorite| %>
+        <dd><%= link_to favorite.title, question_path(favorite) %>
+        <% if current_user == user %>
+          <%= link_to "remove", favorite_question_path(favorite, type: "unfavorite"), method: :put, :class => 'label label-danger' %></dd>
+        <% end %>  
+    <% end %> 
+  <% end %>
+  
+  <% unless user.has_created_any_question || user.has_answered_any_question || user.has_favorite_questions  %>  
+    <p>Hi <%= user.name %>, All your action will be displayed here!</p>
+  <% end %>
