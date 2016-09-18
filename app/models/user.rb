@@ -46,5 +46,19 @@ class User < ActiveRecord::Base
       user.password = Devise.friendly_token[0,20]
       user.name = auth.info.name
     end      
-  end    
+  end 
+
+  def has_created_any_question
+    authored_questions.count > 0
+  end 
+
+  def has_answered_any_question
+    answers.count > 0
+  end
+
+  def has_favorite_questions
+    favorites.count > 0
+  end
+
 end
+
