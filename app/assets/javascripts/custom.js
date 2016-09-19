@@ -1,5 +1,8 @@
 $('document').ready(function() {
-  setTimeout(function() {
-    $('.flash').slideUp();
-  }, 2000);
+$("x").click(function(){
+    $(".alert").fadeOut();
 });
+
+// $("x").click(function(){
+//     $("div.alert.alert-warning.fade.in").fadeOut();
+// });
