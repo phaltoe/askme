@@ -1,6 +1,8 @@
 class AnswersController < ApplicationController
   before_filter :authenticate_user!, only: [:edit, :update, :destroy]
 
+  before_action :set_question, only: [:new, :edit, :create, :update, :destroy]
+
   before_action :set_answer, only: [:edit, :update, :destroy]
 
   after_action :verify_authorized, except: [:index, :new]
@@ -11,7 +13,8 @@ class AnswersController < ApplicationController
         @answers = Question.friendly.find(params[:question_id]).answers
         authorize @answers
       rescue ActiveRecord::RecordNotFound
-        redirect_to question_path, alert: "Question not found"
+        flash[:alert] = "Question not Found"
+        redirect_to questions_path
       end
     else
       @answers = Answer.all
@@ -25,7 +28,7 @@ class AnswersController < ApplicationController
       authorize @question
       @answer = @question.answers.find_by_id(params[:id])
       if @answer.nil?
-        flash[:alert] = "answer not found"
+        flash[:alert] = "Answer not Found"
         redirect_to question_answers_path(@question)
       end
     else
@@ -34,7 +37,6 @@ class AnswersController < ApplicationController
   end
 
   def new
-    @question = Question.friendly.find(params[:question_id])
     @answer = @question.answers.build
   end
 
@@ -42,11 +44,11 @@ class AnswersController < ApplicationController
   end
 
   def create
-    @question = Question.friendly.find(params[:question_id])
     @answer = @question.answers.create(answer_params)
     authorize @answer
 
     if @answer.save
+      flash[:success] = "Answer Successfully Created"
       redirect_to @question  
     else
       flash[:message]
@@ -56,24 +58,27 @@ class AnswersController < ApplicationController
 
   def update    
     if @answer.update_attributes(answer_params)
+      flash[:success] = "Answer Updated Successfully"
       redirect_to([@answer.question, @answer])
-      flash[:message]
     else
-      flash[:message]
+      flash[:error] = "Something Went Wrong"
       render :edit
     end
   end
 
   def destroy
     @answer.destroy
-
+    flash[:success] = "Answer Successfully Deleted"
     redirect_to question_answers_path
   end
 
   private
 
-  def set_answer
+  def set_question
     @question = Question.friendly.find(params[:question_id])
+  end
+
+  def set_answer
     @answer = @question.answers.find(params[:id])
 
     authorize @answer

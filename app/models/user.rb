@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
   end 
 
   def has_created_any_question
-    authored_questions.count > 0
+    authored_questions.count
   end 
 
   def has_answered_any_question
