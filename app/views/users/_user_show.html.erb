@@ -1,4 +1,4 @@
-<% if user.has_created_any_question %>
+<% if user.has_created_any_question? %>
     <dd><strong>Questions Asked:</strong></dd></br>
     
     <% user.authored_questions.each do |question| %>
@@ -7,7 +7,7 @@
   <% end %>  
 
 
-  <% if user.has_answered_any_question %>
+  <% if user.has_answered_any_question? %>
     <dd><strong>Answers:</strong></dd></br>
 
     <% user.answers.each do |answer| %>
@@ -17,7 +17,7 @@
     <% end %> </br>
   <% end %> 
 
-  <% if user.has_favorite_questions %>
+  <% if user.has_favorite_questions? %>
     <dd><strong>Favorited Questions:</strong></dd></br>
     
     <% user.favorites.each do |favorite| %>
@@ -28,6 +28,6 @@
     <% end %> 
   <% end %>
   
-  <% unless user.has_created_any_question || user.has_answered_any_question || user.has_favorite_questions  %>  
+  <% unless user.has_created_any_question? || user.has_answered_any_question? || user.has_favorite_questions?  %>  
     <p>Hi <%= user.name %>, All your action will be displayed here!</p>
   <% end %>

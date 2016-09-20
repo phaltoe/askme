@@ -49,16 +49,16 @@ class User < ActiveRecord::Base
     end      
   end 
 
-  def has_created_any_question
-    authored_questions.count
+  def has_created_any_question?
+    authored_questions.present?
   end 
 
-  def has_answered_any_question
-    answers.count > 0
+  def has_answered_any_question?
+    answers.present?
   end
 
-  def has_favorite_questions
-    favorites.count > 0
+  def has_favorite_questions?
+    favorites.present?
   end
 
 end
