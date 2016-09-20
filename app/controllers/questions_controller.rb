@@ -30,26 +30,28 @@ class QuestionsController < ApplicationController
     @question = current_user.authored_questions.build(question_params)
     authorize @question
     if @question.save
+      flash[:success] = "Question Successfully Created"
       redirect_to @question
     else
-      flash[:message]
+      flash[:error] = "Something Went Wrong"
       render :new
     end
   end
 
   def update
     if @question.update(question_params)
-      flash[:message]
+      flash[:sucess] = "Question Successfully Created"
       redirect_to @question
     else
-      flash[:message]
+      flash[:error] = "Something Went Wrong"
       render :edit
     end
   end
 
   def destroy
     @question.destroy
-
+    
+    flash[:sucess] = "Question Successfully Deleted"
     redirect_to questions_path
   end
 

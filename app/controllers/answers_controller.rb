@@ -10,7 +10,8 @@ class AnswersController < ApplicationController
   def index
     if params[:question_id]
       begin
-        @answers = Question.friendly.find(params[:question_id]).answers
+        @question = Question.friendly.find(params[:question_id])
+        @answers = @question.answers
         authorize @answers
       rescue ActiveRecord::RecordNotFound
         flash[:alert] = "Question not Found"
@@ -51,7 +52,7 @@ class AnswersController < ApplicationController
       flash[:success] = "Answer Successfully Created"
       redirect_to @question  
     else
-      flash[:message]
+      flash[:error] = "Something Went Wrong"
       render :new
     end
   end
