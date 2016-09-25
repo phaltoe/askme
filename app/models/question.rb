@@ -24,15 +24,27 @@ class Question < ActiveRecord::Base
             through: :favorite_questions, 
             source: :user
 
-  accepts_nested_attributes_for :categories, 
-                                 reject_if: :reject_categories                
+  # accepts_nested_attributes_for :categories, 
+  #                                reject_if: :reject_categories                
 
 
-   validates_presence_of :title                       
+   validates_presence_of :title 
 
-  def reject_categories(attributes)
-    attributes['name'].blank?
-  end
+
+   def categories_attributes=(new_categories)
+      new_categories.each do |index, categories_hash|
+        new_category = Category.find_or_create_by(:name => categories_hash[:name]) if 
+        categories_hash[:name].present? 
+        
+        self.categories << new_category if new_category.present?
+      end
+   end
+
+
+
+  # def reject_categories(attributes)
+  #   attributes['name'].blank?
+  # end
 
   def self.most_answered
     self.order("answers_count DESC").limit(3)
@@ -45,5 +57,4 @@ class Question < ActiveRecord::Base
   def have_more_answers
     answers.count > 3
   end
-
 end

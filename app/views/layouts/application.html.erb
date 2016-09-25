@@ -61,16 +61,16 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-9">
-          <!-- <#%= bootstrap_flash %> -->
           <%= render partial: "layouts/flash_messages", flash: flash %>
           <%= yield %>
         </div>
          <%= render 'layouts/sidebar' unless @disable_nav %> 
       </div><!--/row-->
-    <div id="footer">
-      <%= render 'layouts/footer' %>
-    </div>
-
+      <div id="footer">
+        <%= render 'layouts/footer' %>
+      </div>
     </div> <!-- /container -->
   </body>
 </html>
+
+

@@ -27,6 +27,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
+    raise params.inspect
     @question = current_user.authored_questions.build(question_params)
     authorize @question
     if @question.save
