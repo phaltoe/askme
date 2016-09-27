@@ -28,7 +28,7 @@ class Question < ActiveRecord::Base
   #                                reject_if: :reject_categories                
 
 
-   validates_presence_of :title 
+   validates_presence_of :title, :author
 
 
    def categories_attributes=(new_categories)
