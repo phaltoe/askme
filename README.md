@@ -8,8 +8,9 @@ http://askmeapp.herokuapp.com
 AskMe! is a simple Rails App of Questions & Answers.  Simple as that:  Ask questions, get answers.
 
 ## Author
-* "Pedro Henrique Altoé"   <phaltoe85@gmail.com> 
-* Twitter: <https://twitter.com/HPedro20>
+* "Pedro Henrique Altoé": <phaltoe85@gmail.com> 
+* Twitter: <https://twitter.com/phaltoe85>
+* LinkedIn: <https://www.linkedin.com/in/phaltoe>
 
 ## Gems Used
 * Devise => <https://github.com/plataformatec/devise>
